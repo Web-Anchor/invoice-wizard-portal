@@ -8,9 +8,9 @@ import { isToday, getDate } from 'date-fns';
 import { subscription, validateActiveSubMiddleware } from '@lib/subscription';
 import { plans } from '@config/index';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     auth().protect();
     const { email, subject, html } = await request.json();

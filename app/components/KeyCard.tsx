@@ -1,4 +1,4 @@
-import Link from '@components/Link';
+import Link from 'next/link';
 import { useState } from 'react';
 import Badge from './Badge';
 

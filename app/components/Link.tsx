@@ -8,6 +8,8 @@ type Props = {
   className?: string;
   href?: string;
   target?: string;
+  title?: string;
+  rel?: string;
 } & LinkProps;
 
 export default function Link(props: Props) {
