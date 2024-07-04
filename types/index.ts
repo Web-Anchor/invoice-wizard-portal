@@ -11,7 +11,7 @@ export type Charge = {
   calculated_statement_descriptor?: string;
   created?: number;
   currency?: string;
-  customer?: string;
+  customer?: Customer;
   description?: string;
   receipt_url?: string;
   status?: string;

@@ -11,7 +11,7 @@ type Props = {
 
 export function useCharges(props: Props) {
   const { data, error, isLoading } = useSWR(
-    `/api/v1/stripe/charges?account=${props.keyId}`,
+    props.keyId ? `/api/v1/stripe/charges?id=${props.keyId}` : undefined,
     (url: string) =>
       bodyFetcher(url, {
         keyId: props.keyId,
@@ -31,6 +31,7 @@ export function useCharges(props: Props) {
     charges: obj?.data as Charge[],
     has_more: obj?.has_more,
     has_previous: obj?.has_previous,
+    isValidKey: data?.data?.isValidKey as boolean,
     error,
     isLoading,
   };

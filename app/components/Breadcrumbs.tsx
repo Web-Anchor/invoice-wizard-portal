@@ -4,7 +4,6 @@ import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { classNames } from '@helpers/index';
-import Notifications from './Notifications';
 
 type Props = {
   class?: string;
@@ -73,8 +72,6 @@ export default function Breadcrumbs(props: Props) {
             );
           })}
         </ol>
-
-        <Notifications />
       </section>
     </nav>
   );
