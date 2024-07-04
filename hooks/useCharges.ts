@@ -3,7 +3,7 @@ import { bodyFetcher } from '.';
 import { Charge } from '../types';
 
 type Props = {
-  keyId?: string;
+  id?: string;
   charges?: Charge[];
   starting_after?: string;
   ending_before?: string;
@@ -11,10 +11,10 @@ type Props = {
 
 export function useCharges(props: Props) {
   const { data, error, isLoading } = useSWR(
-    props.keyId ? `/api/v1/stripe/charges?id=${props.keyId}` : undefined,
+    props.id ? `/api/v1/stripe/charges?id=${props.id}` : undefined,
     (url: string) =>
       bodyFetcher(url, {
-        keyId: props.keyId,
+        id: props.id,
         starting_after: props.starting_after,
         ending_before: props.ending_before,
       }),

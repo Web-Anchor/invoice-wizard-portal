@@ -35,14 +35,14 @@ export default function Page() {
   const ending_before = searchParams.get('ending_before')!;
 
   const { charges, data, isLoading, isValidKey } = useCharges({
-    keyId: id,
+    id,
     starting_after,
     ending_before,
   });
   const response = state?.charges || charges;
   const hasMoreRes = state?.has_more ?? data?.has_more;
   const hasPreviousRes = state?.has_previous ?? data?.has_previous;
-  // console.log('🚧 Charge Data', charges);
+  console.log('🚧 Charge Data', charges);
 
   async function nexPage() {
     try {
