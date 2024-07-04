@@ -10,6 +10,7 @@ type Props = {
   target?: string;
   title?: string;
   rel?: string;
+  chargeid?: string;
 } & LinkProps;
 
 export default function Link(props: Props) {
@@ -21,7 +22,7 @@ export default function Link(props: Props) {
       {...props}
       href={{
         pathname: props.href || '#',
-        query: { id },
+        query: { id, chargeid: props.chargeid },
       }}
     >
       {props.children}

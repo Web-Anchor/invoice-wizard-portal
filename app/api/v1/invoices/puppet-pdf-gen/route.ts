@@ -14,11 +14,11 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const chargeId = body?.chargeId;
+    const chargeid = body?.chargeid;
     const clientId = body?.clientId; // User db id
     const invoiceData = (body?.data as Template) ?? {};
 
-    if (!chargeId) {
+    if (!chargeid) {
       throw new Error('Charge ID is required');
     }
 

@@ -4,6 +4,7 @@ import { Template } from '../types';
 
 type Props = {
   id?: string;
+  chargeid?: string;
   account?: string;
   templates?: Template[];
 };
@@ -14,7 +15,6 @@ export function useTemplates(props: Props) {
     (url: string) => bodyFetcher(url, { account: props.account }),
     {
       revalidateOnFocus: true,
-
       fallbackData: props?.templates as any,
     }
   );
@@ -34,7 +34,27 @@ export function useBuildTemplate(props: Props) {
     (url: string) => bodyFetcher(url, { id: props.id }),
     {
       revalidateOnFocus: true,
+      fallbackData: props?.templates as any,
+    }
+  );
+  const obj = data?.data;
 
+  return {
+    template: obj?.template,
+    html: obj?.html,
+    dbTemplate: obj?.dbTemplate,
+    error: data?.data?.error || error,
+    isLoading,
+  };
+}
+
+export function useBuildChargeTemplate(props: Props) {
+  const { data, error, isLoading } = useSWR(
+    props?.id ? `/api/v1/templates/build-charge-template` : undefined,
+    (url: string) =>
+      bodyFetcher(url, { id: props.id, chargeid: props.chargeid }),
+    {
+      revalidateOnFocus: true,
       fallbackData: props?.templates as any,
     }
   );

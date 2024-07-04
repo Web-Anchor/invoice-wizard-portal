@@ -19,6 +19,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import RateSection from '@app/components/RateSection';
 import KeyCard from '@app/components/KeyCard';
+import { mediaScreenTitle } from '@helpers/components';
 
 export default function Page() {
   const router = useRouter();
@@ -124,7 +125,7 @@ export default function Page() {
       };
       const { data } = await axios.post('/api/v1/invoices/puppet-pdf-gen', {
         data: templateData,
-        chargeId: id,
+        chargeid: id,
         clientId: searchParams.get('id')!,
       });
       const url = data?.url;
@@ -173,6 +174,7 @@ export default function Page() {
           { item: 'Currency', class: 'hidden md:table-cell' },
           { item: 'Created At', class: 'hidden md:table-cell' },
           { item: 'Receipt' },
+          { item: 'Preview' },
           { item: 'Invoice' },
         ]}
         data={response?.map((item: Charge) => {
@@ -210,6 +212,16 @@ export default function Page() {
                 item: (
                   <Link href={item?.receipt_url!} target="_blank">
                     Receipt
+                  </Link>
+                ),
+              },
+              {
+                item: (
+                  <Link
+                    href={`/dashboard/template-preview`}
+                    chargeid={item?.id}
+                  >
+                    {mediaScreenTitle('Preview & Edit', 'Preview')}
                   </Link>
                 ),
               },
