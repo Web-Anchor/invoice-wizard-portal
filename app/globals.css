@@ -13,9 +13,12 @@
 }
 
 /* Clerk CSS snags */
-.cl-cardBox {
+.profile-wrapper .cl-cardBox {
   width: fit-content;
   box-shadow: none !important;
+}
+.cl-footer {
+  display: none !important;
 }
 @media (min-width: 768px) {
   .cl-navbar {
