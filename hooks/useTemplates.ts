@@ -59,6 +59,7 @@ export function useBuildChargeTemplate(props: Props) {
     }
   );
   const obj = data?.data;
+  console.log('🔑 Build Charge Template', obj);
 
   return {
     template: obj?.template,

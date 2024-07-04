@@ -40,7 +40,10 @@ export async function POST(request: NextRequest) {
     // 📌  Get User Customer
     // --------------------------------------------------------------------------------
     const stripe = require('stripe')(apiKey);
-    const charge = await stripe.charges.retrieve(chargeid);
+    const charge = await stripe.charges.retrieve(chargeid, {
+      expand: ['customer'],
+    });
+    console.log('🔑 ssr_Charge', charge);
 
     // --------------------------------------------------------------------------------
     // 📌  Retrieve customers templates
@@ -59,12 +62,24 @@ export async function POST(request: NextRequest) {
         // dummy data prefill
         date: new Date(charge?.created! * 1000).toDateString(),
         billToName: charge?.customer?.name,
-        billToAddressLine1: charge?.billing_details?.address?.line1,
-        billToAddressLine2: charge?.billing_details?.address?.line2,
-        billToCity: charge?.billing_details?.address?.city,
-        billToState: charge?.billing_details?.address?.state,
-        billToCountry: charge?.billing_details?.address?.country,
-        billToPostalCode: charge?.billing_details?.address?.postal_code,
+        billToAddressLine1:
+          charge?.billing_details?.address?.line1 ||
+          charge?.customer?.address?.line1,
+        billToAddressLine2:
+          charge?.billing_details?.address?.line2 ||
+          charge?.customer?.address?.line2,
+        billToCity:
+          charge?.billing_details?.address?.city ||
+          charge?.customer?.address?.city,
+        billToState:
+          charge?.billing_details?.address?.state ||
+          charge?.customer?.address?.state,
+        billToCountry:
+          charge?.billing_details?.address?.country ||
+          charge?.customer?.address?.country,
+        billToPostalCode:
+          charge?.billing_details?.address?.postal_code ||
+          charge?.customer?.address?.postal_code,
         items: [
           {
             description: charge?.description,
