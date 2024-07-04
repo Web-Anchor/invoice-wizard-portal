@@ -85,26 +85,11 @@ export default function Header(props: Props) {
                         )}
 
                         <Link
-                          href="#pricing"
-                          scroll
-                          className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                          onClick={() => ctaRef.current?.click()}
-                        >
-                          Pricing
-                        </Link>
-                        <Link
                           href="#facts"
                           className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                           onClick={() => ctaRef.current?.click()}
                         >
                           Facts
-                        </Link>
-                        <Link
-                          href={isSignedIn ? '/dashboard/support' : '/contact'}
-                          className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                          onClick={() => ctaRef.current?.click()}
-                        >
-                          Contact
                         </Link>
                       </div>
                     )}
@@ -156,26 +141,11 @@ export default function Header(props: Props) {
                 {path === '/' && (
                   <>
                     <Link
-                      href="#pricing"
-                      scroll
-                      className={classNames(mobInactive)}
-                      onClick={() => ctaRef.current?.click()}
-                    >
-                      Pricing
-                    </Link>
-                    <Link
                       href="#facts"
                       className={classNames(mobInactive)}
                       onClick={() => ctaRef.current?.click()}
                     >
                       Facts
-                    </Link>
-                    <Link
-                      href={isSignedIn ? '/dashboard/support' : '/contact'}
-                      className={classNames(mobInactive)}
-                      onClick={() => ctaRef.current?.click()}
-                    >
-                      Contact
                     </Link>
                   </>
                 )}

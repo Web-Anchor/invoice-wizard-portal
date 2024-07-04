@@ -43,6 +43,7 @@ export default function DesktopNav() {
     path,
     show: showMenuNavRoutes({ active, basic, advanced, pro }),
   });
+  console.log('🚀 dashboard', dashboard);
 
   const Support = () => {
     return dashboard.map((team) => {

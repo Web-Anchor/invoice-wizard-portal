@@ -28,14 +28,15 @@ export default function Page() {
       const subject = form.get('subject');
       const message = form.get('message');
 
-      const { data, status } = await cFetch({
+      const { data, status, error } = await cFetch({
         url: '/api/v1/support/add-ticket',
         method: 'POST',
         data: { subject, message },
       });
+      console.log('🚨 logs', data, status);
 
       if (status !== 200 || data?.error) {
-        throw new Error(data?.error);
+        throw new Error(data?.error ?? error.message);
       }
 
       toast.success(
@@ -62,26 +63,21 @@ export default function Page() {
   return (
     <Wrapper>
       <PageHeadings
-        title="Help & Support Form."
-        description=" Discover our Help & Support Center, where your queries are
-        prioritized, and our team is dedicated to providing prompt
-        responses to ensure your needs are addressed swiftly. Rest
-        assured that your tickets are handled with urgency, and we
-        strive to get back to you as soon as possible to offer the
-        assistance you deserve. Please fill out the form below with your inquiry, and our support team will get back to you as soon as possible. Your satisfaction is our priority, and we are committed to providing you with the help you need."
-        slogan="Your Guide to Seamless Assistance."
+        title="Share Your Thoughts."
+        description="Help us improve by sharing your feedback on our customer portal. Your insights are valuable in shaping a better experience for you and all our users."
+        slogan="Your Voice Matters, We here to Listen!"
       />
 
       <form
         ref={formRef}
-        className="card max-w-4xl lg:px-10 lg:py-8 lg:mb-10 lg:shadow-xl"
+        className="card max-w-4xl lg:px-10 lg:py-8 bg-base-100 lg:shadow-xl"
         onSubmit={formHandler}
       >
         <div className="space-y-12">
           <div className="flex flex-col gap-10 lg:flex-row">
             <div className="flex flex-1 flex-col gap-2 max-w-full lg:max-w-xs">
               <h2 className="text-base font-semibold leading-7 text-gray-800">
-                Support Ticket
+                Feedback & bug reports
               </h2>
               <Badge
                 title={count}
@@ -136,7 +132,7 @@ export default function Page() {
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <Button fetching={state?.fetching} type="submit">
-            Submit Ticket
+            Submit
           </Button>
         </div>
       </form>

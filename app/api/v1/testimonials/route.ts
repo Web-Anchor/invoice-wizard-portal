@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       .where(
         and(
           or(eq(ratings.rating, '5.0'), eq(ratings.rating, '4.0')),
-          eq(ratings.platform, 'platform'),
+          eq(ratings.platform, 'portal'),
           sql`ratings.id IN (SELECT id FROM ratings ORDER BY created_at DESC LIMIT 1)`
         )
       )

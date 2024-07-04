@@ -1,67 +1,74 @@
 import Layout from '@components/Layout';
-import Pricing from '@components/Pricing';
-import FeatureSections from '@components/FeatureSections';
 import FrequentlyAskedQuestions from '@components/FrequentlyAskedQuestions';
-import Workflow from '@components/Workflow';
-import CustomerWorkflow from '@components/CustomerWorkflow';
 import { TopBackground, BottomBackground } from '@components/Background';
 import TestimonialsWhiteGrid from '@components/TestimonialsWhiteGrid';
-import { SectionWrapper } from '@components/Wrapper';
-import Analytics from '@components/Analytics';
-import VideoWalkthrough from '@components/VideoWalkthrough';
 import SimpleOnBg from '@components/SimpleOnBg';
+import { components } from '@lib/components';
+import HeaderWithEyebrow from '@components/HeaderWithEyebrow';
+import FeatureSectionsWithProductDark from '@components/FeatureSectionsWithProductDark';
+import HeroSplitWithImage from '@components/HeroSplitWithImage';
+import SimpleOnDark from '@components/SimpleOnDark';
+import { SectionWrapper } from './components/Wrapper';
+import Workflow from './components/Workflow';
 
-export default function Page() {
+export default async function Page(params: { searchParams: { id: string } }) {
+  const data = await components({ id: params.searchParams.id });
+  const company = data?.components?.find(
+    (component) => component?.type === 'Company'
+  );
+  const landingPageHeader = data?.components?.find(
+    (component) => component.type === 'Landing Page Header Section'
+  );
+  const landingPageFooter = data?.components?.find(
+    (component) => component.type === 'Landing Page Footer Section'
+  );
+
   return (
     <Layout>
-      <TopBackground />
-      <BottomBackground />
-
       <SectionWrapper>
-        <FeatureSections />
-        <SimpleOnBg
-          description={[
-            'Join us today and discover how our platform simplifies your billing process. From viewing transactions, invoicing and more to making necessary adjustments, our invoicing solution ensures that your financial management is both efficient and effective. Empower yourself with modern invoicing - start simplifying your billing process now!',
-          ]}
+        <TopBackground />
+        <BottomBackground />
+
+        <HeaderWithEyebrow
+          slogan={landingPageHeader?.slogan!}
+          title={landingPageHeader?.title!}
+          description={landingPageHeader?.description!}
+          hide={!landingPageHeader?.id}
         />
-        <Pricing cardWrapperClass="lg:flex-nowrap" />
+
+        <HeaderWithEyebrow
+          title="Welcome to Your Invoicing Portal"
+          description="Discover the ease of managing your financial activities from one central location. Our platform offers you a dedicated space where you can effortlessly view transactions from your vendor, download invoices, and make necessary adjustments such as adding notes or updating details. With these powerful features, you can keep track of all your financial dealings and ensure that your records are always up-to-date and accurate. Contact your vendor today to access your personalized invoicing portal and start experiencing the convenience of streamlined financial management."
+          slogan="Your Gateway to Effortless Invoicing!"
+        />
         <SimpleOnBg
-          title="Keep it simple, keep it organized"
+          title="Customer Portal. Your Invoicing made smarter."
+          slogan="Empowering You, One Click at a Time!"
           description={[
-            'Building on the ease of managing your financial activities from a central location, our platform allows you to connect your Stripe account via API, view transactions, download and adjust invoices, and track payments with precision. Our dedicated space provides an intuitive interface where you can handle all your invoicing needs, keeping your records organized and up-to-date.',
-            'Enhance your productivity and efficiency with our intuitive invoicing app designed to simplify your workflow. Experience seamless invoicing from creation to payment with our user-friendly platform.',
+            'Experience the next level of efficiency and convenience with our Customer Portal. Building on the ease of managing your financial activities, our platform allows you to effortlessly handle invoicing, download essential documents, and track transactions with precision. Our intuitive interface ensures that you can streamline your financial tasks and maintain control without any hassle. Join us today and see how simple and effective financial management can be with our tailored invoicing solutions.',
           ]}
-          slogan="A better workflow"
         />
         <Workflow />
         <SimpleOnBg
           description={[
-            'Experience the seamless integration of our invoicing platform with your daily operations, making your financial management tasks simpler and more efficient. With features like self-print and 24/7 access to invoicing to your customers, our platform ensures that your invoicing process is always at your fingertips, ready to enhance your productivity.',
+            'Our platform is designed to provide you with a seamless and efficient invoicing experience. With our Customer Portal, you can easily manage your financial activities, view transactions, and download invoices with just a few clicks. Our user-friendly interface ensures that you can stay in control of your finances without any hassle. Join now to start enjoying the benefits of a streamlined invoicing process and experience the convenience of managing your financial activities in one central location.',
           ]}
         />
-        <VideoWalkthrough />
-        <SimpleOnBg
-          description={[
-            'Take advantage of our self-print feature, allowing your customers to access and download their invoices anytime, anywhere. With 24/7 access to invoicing, your customers can conveniently manage their billing tasks, enhancing their overall experience with your business.',
-          ]}
+        <HeroSplitWithImage
+          title="Ready to Simplify Your Invoicing?"
+          description="Welcome to Your Personalized Invoicing Platform, designed to make managing your financial activities effortless and intuitive. With our portal, you can easily view transactions from your vendor, download and adjust invoices, and keep all your financial records organized. Sign up now to start experiencing the benefits of a streamlined invoicing process. Enjoy seamless and efficient financial management that saves you time and effort, allowing you to focus on what truly matters. Take the next step towards smarter financial control today!"
+          url="https://images.unsplash.com/photo-1498758536662-35b82cd15e29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2102&q=80"
+          slogan="Join the Community of Happy Users!"
         />
-        <CustomerWorkflow />
-        <SimpleOnBg
-          title="Empower Your Business with Modern Invoicing Solutions"
-          description={[
-            'Enhance your productivity with personalized invoice templates and detailed analytics that provide insights into your financial performance. Our platform empowers you to make informed decisions and maintain control over your business finances with ease.',
-            'Join us today and experience a revolution in invoicing and financial management. Let our platform simplify your finances and empower your business, so you can focus on what truly matters.',
-          ]}
-          slogan="Empowering You, One Click at a Time!"
+
+        <HeaderWithEyebrow
+          slogan={landingPageFooter?.slogan!}
+          title={landingPageFooter?.title!}
+          description={landingPageFooter?.description!}
+          hide={!landingPageFooter?.id}
         />
-        <Analytics />
-        <SimpleOnBg
-          description={[
-            'Our intuitive dashboard provides real-time updates on transaction volumes, revenue growth, and customer engagement metrics, empowering you to streamline operations and maximize profitability. From identifying revenue opportunities to improving customer retention, leverage actionable insights to stay ahead in today`s competitive landscape. Transform data into actionable intelligence and unlock the full potential of your invoicing process with our powerful analytics tools.',
-          ]}
-        />
-        <FrequentlyAskedQuestions />
         <TestimonialsWhiteGrid />
+        <FrequentlyAskedQuestions />
       </SectionWrapper>
     </Layout>
   );

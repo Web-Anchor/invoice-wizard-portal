@@ -3,42 +3,35 @@
 import Image from 'next/image';
 import {
   UserGroupIcon,
-  RectangleGroupIcon,
-  SwatchIcon,
-  PlusCircleIcon,
-  BoltIcon,
+  CloudArrowUpIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
 } from '@heroicons/react/20/solid';
 
 const features = [
   {
-    name: 'Efficiency.',
+    name: 'Document Management.',
     description:
-      'Optimize your workflow by easily creating, sending, and managing invoices in a streamlined manner.',
-    icon: BoltIcon,
+      'Access and download important documents anytime, anywhere. Organize and store your financial records securely in your dedicated space. Stay in control of your documents with our easy-to-use platform.',
+    icon: CloudArrowUpIcon,
   },
   {
-    name: 'Organization.',
+    name: 'User-Friendly Interface',
     description:
-      'Keep your invoicing process organized with a centralized platform that allows you to track payments and manage invoices effortlessly.',
-    icon: RectangleGroupIcon,
-  },
-  {
-    name: 'Accessibility.',
-    description:
-      'Access your invoicing tools anytime, anywhere, making it convenient to stay on top of your billing tasks.',
+      'Monitor your transactions effortlessly with our intuitive interface. Keep track of payments and expenses seamlessly. Stay informed about your financial activities with our real-time updates feature.',
     icon: UserGroupIcon,
   },
   {
-    name: 'Customization.',
+    name: 'Access Your Finances Anytime, Anywhere',
     description:
-      'Tailor your invoicing workflow to fit your unique branding and style with customizable templates and settings.',
-    icon: SwatchIcon,
+      'Stay in control of your financial activities with 24/7 access to your invoicing portal. Whether you`re in the office or on the go, you can manage transactions, view documents, and handle invoices at your convenience.',
+    icon: CursorArrowRaysIcon,
   },
   {
-    name: 'Integration.',
+    name: 'Secure and Reliable.',
     description:
-      'Seamlessly integrate with Stripe API`s to enhance your workflow and create a more interconnected invoicing ecosystem for your business.',
-    icon: PlusCircleIcon,
+      'Monitor your invoicing and payments in real-time, confident in the knowledge that your data is protected!',
+    icon: FingerPrintIcon,
   },
 ];
 
@@ -48,18 +41,16 @@ export default function Workflow() {
       <div className="mx-auto max-w-7xl lg:px-8">
         <div className="px-6 lg:px-0 lg:mx-auto max-w-4xl lg:text-center">
           <h2 className="text-xl font-semibold leading-7 text-indigo-600">
-            Streamline Your Invoicing Process with Ease
+            Empowering Your Financial Success
           </h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl">
-            Streamline Your Financial Management with Ease
+            Effortless Financial Management Features
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Enhance your productivity and efficiency with our intuitive
-            invoicing app designed to simplify your workflow. Our dedicated
-            user-friendly platform offers a seamless invoicing experience to
-            your customers and invoicing management to payment, to customers ,
-            to statistics and analytics never been easier, ensuring you can
-            manage your financial activities effortlessly.
+            Experience an efficient and convenient platform designed to simplify
+            your invoicing process. Handle invoices, download documents, and
+            track transactions effortlessly. Our intuitive interface ensures you
+            stay in control with ease.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start lg:mt-16">
@@ -89,7 +80,7 @@ export default function Workflow() {
               />
               <div className="mx-auto lg:max-w-2xl sm:mx-0 sm:max-w-none">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_STORAGE_CDN}/evlQBzcrZpVwdbhxNZINrg.png`}
+                  src={`${process.env.NEXT_PUBLIC_STORAGE_CDN}/FfNPG8nwlceFcbMGt6p3LQBCOwKpvx1jA5UlWR5mT8g.png`}
                   alt="Product screenshot"
                   width={2432}
                   height={1842}

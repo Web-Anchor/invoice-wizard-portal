@@ -18,22 +18,16 @@ export function menuNav(props: {
 }) {
   let menu = [
     {
-      name: 'Feature Request',
-      href: '/dashboard/new-features',
+      name: 'Feedback',
+      href: '/dashboard/feedback',
       initial: 'F',
-      current: props.path === '/dashboard/new-features',
+      current: props.path === '/dashboard/feedback',
     },
     {
-      name: 'Help & Support',
-      href: '/dashboard/support',
-      initial: 'H',
-      current: props.path === '/dashboard/support',
-    },
-    {
-      name: 'Subscriptions',
-      href: '/dashboard/subscriptions',
-      initial: 'S',
-      current: props.path === '/dashboard/subscriptions',
+      name: 'About',
+      href: '/dashboard/about',
+      initial: 'A',
+      current: props.path === '/dashboard/about',
     },
   ];
 
@@ -160,26 +154,7 @@ export function showMainNavRoutes(props: {
   advanced?: boolean;
   pro?: boolean;
 }) {
-  const BASE = ['/dashboard', '/dashboard/stripe', '/dashboard/profile'];
-  const ACTIVE_BASE = [
-    ...BASE,
-    '/dashboard/charges',
-    '/dashboard/customers',
-    '/dashboard/reports',
-  ];
-
-  if ((props.pro && props.active) || (props.advanced && props.active)) {
-    return [
-      ...ACTIVE_BASE,
-      '/dashboard/invoices',
-      '/dashboard/portal',
-      '/dashboard/analytics',
-    ];
-  }
-
-  if (props.active && props.basic) {
-    return [...ACTIVE_BASE, '/dashboard/analytics'];
-  }
+  const BASE = ['/dashboard', '/dashboard/profile'];
 
   return BASE;
 }
@@ -190,11 +165,7 @@ export function showMenuNavRoutes(props: {
   advanced?: boolean;
   pro?: boolean;
 }) {
-  const BASE = ['/dashboard/support', '/dashboard/subscriptions'];
-
-  if ((props.pro && props.active) || (props.advanced && props.active)) {
-    return [...BASE, '/dashboard/new-features'];
-  }
+  const BASE = ['/dashboard/feedback', '/dashboard/about'];
 
   return BASE;
 }
