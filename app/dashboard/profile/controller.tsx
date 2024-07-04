@@ -19,7 +19,11 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <UserProfile />
+      <UserProfile
+        appearance={{
+          elements: { pageScrollBox: { boxShadow: 'none' } },
+        }}
+      />
     </Wrapper>
   );
 }
