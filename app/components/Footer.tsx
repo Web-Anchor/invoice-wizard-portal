@@ -1,7 +1,7 @@
 'use client';
 
 import { JSX, SVGProps } from 'react';
-import Link from 'next/link';
+import Link from '@components/Link';
 
 const navigation = {
   social: [

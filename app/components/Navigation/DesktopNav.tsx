@@ -11,7 +11,7 @@ import {
   useTotalCharges,
   useTotalCustomers,
 } from '@hooks/index';
-import Link from 'next/link';
+import Link from '@components/Link';
 import {
   mainNav,
   menuNav,

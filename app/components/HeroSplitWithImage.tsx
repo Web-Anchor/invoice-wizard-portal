@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import Link from 'next/link';
+import Link from '@components/Link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 

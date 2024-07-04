@@ -13,7 +13,7 @@ import Button from '@app/components/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Table from '@app/components/Table';
 import { Charge, Template } from '@appTypes/index';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { CloudArrowDownIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
 import { toast } from 'sonner';

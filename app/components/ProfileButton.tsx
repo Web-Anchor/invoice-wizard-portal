@@ -5,7 +5,7 @@ import { classNames } from '@helpers/index';
 import UserProfileCard from './UserProfileCard';
 import { useClerk, useUser } from '@clerk/nextjs';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import { fakerUser } from '@lib/faker';
 

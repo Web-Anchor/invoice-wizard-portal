@@ -2,7 +2,7 @@
 
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { classNames } from '@helpers/index';
 
 type Props = {

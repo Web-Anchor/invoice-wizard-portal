@@ -4,7 +4,7 @@ import Wrapper, { SectionWrapper } from '@app/components/Wrapper';
 import PageHeadings from '@app/components/PageHeadings';
 import { Spinner } from '@app/components/Skeleton';
 import { SignIn, useUser } from '@clerk/nextjs';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function Page() {

@@ -5,7 +5,7 @@ import {
   ArrowDownIcon,
   UserGroupIcon,
 } from '@heroicons/react/20/solid';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { StatsCardSkeleton } from './Skeleton';
 
 type Props = {

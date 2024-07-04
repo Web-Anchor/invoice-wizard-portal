@@ -4,7 +4,7 @@ import Wrapper, { SectionWrapper } from '@app/components/Wrapper';
 import PageHeadings from '@app/components/PageHeadings';
 import { Spinner } from '@app/components/Skeleton';
 import { SignUp, ClerkLoading, ClerkLoaded } from '@clerk/nextjs';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { useSearchParams } from 'next/navigation';
 import { CardWrapper } from '@app/sign-in/[[...sign-in]]/controller';
 

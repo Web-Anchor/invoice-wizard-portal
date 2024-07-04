@@ -4,7 +4,7 @@ import { classNames } from '@helpers/index';
 import { useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { XCircleIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+import Link from '@components/Link';
 import Logo from '@components/Logo';
 
 type Props = {

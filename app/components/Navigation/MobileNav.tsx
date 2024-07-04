@@ -12,7 +12,7 @@ import {
 import { useState, Fragment } from 'react';
 import { Dialog, Transition, TransitionChild } from '@headlessui/react';
 import ProfileButton from '@components/ProfileButton';
-import Link from 'next/link';
+import Link from '@components/Link';
 import Badge from '@components/Badge';
 import {
   mainNav,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@hooks/index';
-import Link from 'next/link';
+import Link from '@components/Link';
 
 export default function FrameCard() {
   const { user } = useUser({});

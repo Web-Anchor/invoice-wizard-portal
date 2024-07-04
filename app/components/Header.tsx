@@ -2,7 +2,7 @@
 
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { classNames } from '@helpers/index';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { useClerk, useUser } from '@clerk/nextjs';
 import { usePathname, useRouter } from 'next/navigation';
 import UserProfileCard from '@components/UserProfileCard';

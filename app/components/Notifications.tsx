@@ -1,6 +1,6 @@
 import { classNames } from '@helpers/index';
 import Badge from '@components/Badge';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { useKeyValidate } from '@hooks/useValidateApiKeys';
 import { useStripeKeys } from '@hooks/useStripeKeys';
 import { useSubscription } from '@hooks/useSubscriptions';
