@@ -60,35 +60,35 @@ export type User = {
 };
 
 export type Template = {
-  id?: string;
-  header?: string;
-  invoiceNumber?: string;
-  date?: string;
-  companyName?: string;
-  imgUrl?: string;
-  billToName?: string;
-  billToEmail?: string;
-  billToPhone?: string;
-  billToAddress?: string;
-  billToAddressLine1?: string;
-  billToAddressLine2?: string;
-  billToCity?: string;
-  billToState?: string;
-  billToPostalCode?: string;
-  billToCountry?: string;
-  customFields?: { [key: number]: CustomField };
-  memo?: string;
+  id?: string | null;
+  header?: string | null;
+  invoiceNumber?: string | null;
+  date?: string | null;
+  companyName?: string | null;
+  imgUrl?: string | null;
+  billToName?: string | null;
+  billToEmail?: string | null;
+  billToPhone?: string | null;
+  billToAddress?: string | null;
+  billToAddressLine1?: string | null;
+  billToAddressLine2?: string | null;
+  billToCity?: string | null;
+  billToState?: string | null;
+  billToPostalCode?: string | null;
+  billToCountry?: string | null;
+  customFields?: { [key: number]: CustomField } | null;
+  memo?: string | null;
   items?: {
-    description?: string;
-    amount?: string | number;
-    quantity?: number;
+    description?: string | null;
+    amount?: string | number | null;
+    quantity?: number | string | null;
     units?: string | number;
   }[];
-  dueDate?: string;
-  subtotal?: string;
-  tax?: string;
-  total?: string;
-  footer?: string;
+  dueDate?: string | null;
+  subtotal?: string | null;
+  tax?: string | null;
+  total?: string | null;
+  footer?: string | null;
 };
 
 export type CustomField = {
