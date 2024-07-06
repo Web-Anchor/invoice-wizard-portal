@@ -65,6 +65,7 @@ export function useBuildChargeTemplate(props: Props) {
     template: obj?.template,
     html: obj?.html,
     dbTemplate: obj?.dbTemplate,
+    charge: obj?.charge,
     error: data?.data?.error || error,
     isLoading,
   };
