@@ -8,7 +8,11 @@ import PageHeadings from '@app/components/PageHeadings';
 import parse from 'html-react-parser';
 import { useState } from 'react';
 import axios from 'axios';
-import { downloadFile, stripeAmountToCurrency } from '@helpers/index';
+import {
+  classNames,
+  downloadFile,
+  stripeAmountToCurrency,
+} from '@helpers/index';
 import { toast } from 'sonner';
 import { Template } from '@appTypes/index';
 import Button from '@app/components/Button';
@@ -146,7 +150,15 @@ export default function Page() {
             </Button>
             <Link
               href={`/dashboard`}
-              className="block relative rounded-md h-fit bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-700"
+              className={classNames(
+                'block relative rounded-md h-fit bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-700',
+                state.fetching && 'cursor-not-allowed opacity-50'
+              )}
+              onClick={(e) => {
+                if (state.fetching) {
+                  e.preventDefault();
+                }
+              }}
             >
               Back
             </Link>
