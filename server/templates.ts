@@ -3,6 +3,7 @@
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';
+import axios from 'axios';
 
 export async function buildTemplate(props: {
   data: object;
@@ -27,12 +28,14 @@ type GetTemplate = {
 
 export async function getTemplate(props: GetTemplate): Promise<string> {
   try {
-    const templatePath = path.join(
-      process.cwd(),
-      'templates',
-      props.templateName
+    const { data } = await axios.post(
+      process.env.NEXT_PUBLIC_PLATFORM_APP_URL + '/api/v1/templates/template',
+      {
+        template: props.templateName,
+      }
     );
-    return fs.readFileSync(templatePath, 'utf-8');
+
+    return data?.template;
   } catch (error: any) {
     console.error('🚨 error', error?.message);
     return '';
