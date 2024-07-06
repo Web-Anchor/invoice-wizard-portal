@@ -86,34 +86,46 @@ export async function POST(request: NextRequest) {
 }
 
 async function callApiWithRetry(props: { html: string; uniqueId: string }) {
-  const MAX_RETRIES = 3;
-  const RETRY_INTERVAL = 500;
-
+  const MAX_RETRIES = 10;
+  const RETRY_INTERVAL = 2000; // delay between retries in ms
   let retries = 0;
 
-  try {
-    const { data } = await axios.post(
-      process.env.NETLIFY_FUNCTIONS + '/puppet-pdf-gen',
-      {
-        html: props.html,
-        id: props.uniqueId, // dbTemplate?.[0].id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}`,
+  async function attempt(): Promise<{ url: string }> {
+    try {
+      const { data, status } = await axios.post(
+        `${process.env.NETLIFY_FUNCTIONS}/puppet-pdf-gen`,
+        {
+          html: props.html,
+          id: props.uniqueId,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}`,
+          },
+        }
+      );
+      console.log('📄 PDF_Data: ', data);
 
-    return data;
-  } catch (error) {
-    if (retries < MAX_RETRIES) {
-      retries++;
-      console.log(`Retrying API call (${retries}/${MAX_RETRIES})...`);
-      setTimeout(callApiWithRetry, RETRY_INTERVAL);
-    } else {
-      console.error('Max retries reached. Unable to call API.');
-      throw new Error('Max retries reached. Unable to call API.');
+      if (status !== 200 || !data?.url) {
+        throw new Error('Failure: ' + status);
+      }
+
+      return data as { url: string };
+    } catch (error) {
+      if (retries < MAX_RETRIES) {
+        retries++;
+        console.log(`Retrying API call (${retries}/${MAX_RETRIES})...`);
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            attempt().then(resolve).catch(reject);
+          }, RETRY_INTERVAL);
+        });
+      } else {
+        console.error('Max retries reached. Unable to call API.');
+        throw new Error('Max retries reached. Unable to call API.');
+      }
     }
   }
+
+  return attempt();
 }
