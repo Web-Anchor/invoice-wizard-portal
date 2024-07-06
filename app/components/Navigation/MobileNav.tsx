@@ -20,7 +20,6 @@ import {
   showMainNavRoutes,
   showMenuNavRoutes,
 } from '@helpers/data';
-import Notifications from '@components/Notifications';
 import Logo from '../Logo';
 
 export default function MobileNav() {
@@ -237,7 +236,6 @@ export default function MobileNav() {
           </section>
         )}
 
-        <Notifications />
         <ProfileButton />
       </div>
     </section>

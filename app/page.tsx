@@ -5,9 +5,7 @@ import TestimonialsWhiteGrid from '@components/TestimonialsWhiteGrid';
 import SimpleOnBg from '@components/SimpleOnBg';
 import { components } from '@lib/components';
 import HeaderWithEyebrow from '@components/HeaderWithEyebrow';
-import FeatureSectionsWithProductDark from '@components/FeatureSectionsWithProductDark';
 import HeroSplitWithImage from '@components/HeroSplitWithImage';
-import SimpleOnDark from '@components/SimpleOnDark';
 import { SectionWrapper } from './components/Wrapper';
 import Workflow from './components/Workflow';
 
