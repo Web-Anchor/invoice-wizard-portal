@@ -38,7 +38,7 @@ export default function Page() {
         <SectionWrapper class="flex-row gap-5 w-[400px] text-nowrap items-center">
           <PageHeadings description="Don't have an account?" class="w-fit" />
           <Link
-            href={`/sign-up?redirect=${redirect}`}
+            href={`/sign-up`}
             className="bg-transparent items-center px-0 text-sm font-semibold text-indigo-600 shadow-none hover:bg-transparent hover:text-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Sign Up
