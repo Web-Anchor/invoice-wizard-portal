@@ -19,7 +19,7 @@ export default function HeaderWithEyebrow(
   return (
     <div
       className={classNames(
-        'w-full mx-auto max-w-3xl lg:text-center',
+        'px-5 w-full lg:mx-auto max-w-3xl lg:text-center',
         props.class
       )}
     >

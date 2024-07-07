@@ -24,7 +24,7 @@ export default function HeroSplitWithImage(
   }
 
   return (
-    <div className="relative lg:mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
+    <div className="relative mx-5 lg:mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
       <div className="lg:col-span-7 lg:px-0 lg:py-20 xl:col-span-6">
         <div className="max-w-2xl text-left lg:text-center">
           {props.slogan && (
