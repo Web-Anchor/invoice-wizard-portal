@@ -30,7 +30,7 @@ const ParsedContent = (props: { html?: string }) => {
         const textNode = domNode.children.find(
           (child) => child.type === 'text'
         );
-        const value = textNode?.data;
+        const value = (textNode as unknown as Text)?.data;
         const dataInput = domNode.attribs['data-input'];
 
         return (
