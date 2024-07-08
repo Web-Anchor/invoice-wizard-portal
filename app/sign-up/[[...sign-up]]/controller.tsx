@@ -11,6 +11,7 @@ import { CardWrapper } from '@app/sign-in/[[...sign-in]]/controller';
 export default function Page() {
   const searchParams = useSearchParams()!;
   const redirect = searchParams.get('redirect');
+  const id = searchParams.get('id');
 
   return (
     <Wrapper>
@@ -24,10 +25,7 @@ export default function Page() {
       <ClerkLoaded>
         <SectionWrapper class="items-center">
           <CardWrapper>
-            <SignUp
-              afterSignUpUrl={`/api/v1/auth?redirect=${redirect}`}
-              afterSignInUrl={`/api/v1/auth?redirect=${redirect}`}
-            />
+            <SignUp forceRedirectUrl={redirect || `/api/v1/auth?id=${id}`} />
           </CardWrapper>
           <SectionWrapper class="flex-row text-nowrap items-center">
             <PageHeadings

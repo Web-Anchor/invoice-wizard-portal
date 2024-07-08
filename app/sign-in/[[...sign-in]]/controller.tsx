@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 export default function Page() {
   const searchParams = useSearchParams()!;
   const redirect = searchParams.get('redirect');
+  const id = searchParams.get('id');
   const router = useRouter();
   let { isSignedIn, user, isLoaded } = useUser();
 
@@ -23,17 +24,11 @@ export default function Page() {
     );
   }
 
-  if (isSignedIn) {
-    router.push('/dashboard');
-  }
-
   return (
     <Wrapper class="pt-5">
       <SectionWrapper class="items-center">
         <CardWrapper>
-          <SignIn
-            forceRedirectUrl={redirect || `/api/v1/auth?redirect=${redirect}`}
-          />
+          <SignIn forceRedirectUrl={redirect || `/api/v1/auth?id=${id}`} />
         </CardWrapper>
         <SectionWrapper class="flex-row gap-5 w-[400px] text-nowrap items-center">
           <PageHeadings description="Don't have an account?" class="w-fit" />

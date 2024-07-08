@@ -11,11 +11,11 @@ export async function GET(request: NextRequest) {
     auth().protect();
 
     const { searchParams } = new URL(request.url);
-    const redirect = searchParams.get('redirect');
+    const id = searchParams.get('id');
 
     const { userId } = auth();
     const user = await currentUser();
-    console.log('👤 Creating User record. Clerk data: ', user, redirect);
+    console.log('👤 Creating User record. Clerk data: ', user?.id);
 
     await db
       .insert(users)
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: APP_URL + '/dashboard',
+        Location: APP_URL + `/dashboard?id=${id}`,
       },
     });
   } catch (error: any) {

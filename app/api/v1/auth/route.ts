@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     auth().protect();
 
     const { searchParams } = new URL(request.url);
-    const redirect = searchParams.get('redirect');
+    const id = searchParams.get('id');
 
     const { userId } = auth();
     const dbUser = await db
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
         status: 302,
         // post data to create user
         headers: {
-          Location: APP_URL + `/api/v1/create-user`,
+          Location: APP_URL + `/api/v1/create-user?id=${id}`,
         },
       });
     }
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: APP_URL + '/dashboard',
+        Location: APP_URL + `/dashboard?id=${id}`,
       },
     });
   } catch (error: any) {
