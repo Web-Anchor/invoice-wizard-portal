@@ -154,7 +154,7 @@ export default function Page() {
             dangerouslySetInnerHTML={{ __html: html }}
           /> */}
           <ParsedContent html={bodyContent} />
-          <section className="flex w-full flex-row gap-2 justify-center lg:justify-end my-10">
+          <section className="flex w-full flex-row gap-2 justify-center my-10">
             <Button fetching={state?.fetching} type="submit">
               <section className="flex flex-row gap-2">
                 <CloudArrowDownIcon className="h-5 w-5" />
