@@ -1,5 +1,6 @@
 'use client';
 
+import { getFromSessionStorage } from '@helpers/index';
 import { default as NextLink, LinkProps } from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -15,8 +16,11 @@ type Props = {
 
 export default function Link(props: Props) {
   const searchParams = useSearchParams()!;
-  const id = searchParams.get('id');
   const chargeid = searchParams.get('chargeid') || props.chargeid;
+  const storage = getFromSessionStorage(process.env.NEXT_PUBLIC_APP_URL!);
+  const id = isString(searchParams.get('id'))
+    ? searchParams.get('id')
+    : storage?.id;
 
   const query: { id?: string; chargeid?: string } = {};
   if (id && isString(id)) {

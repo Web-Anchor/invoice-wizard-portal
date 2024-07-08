@@ -3,29 +3,35 @@
 import Wrapper, { SectionWrapper } from '@app/components/Wrapper';
 import PageHeadings from '@app/components/PageHeadings';
 import { Spinner } from '@app/components/Skeleton';
-import { SignUp, ClerkLoading, ClerkLoaded } from '@clerk/nextjs';
+import { SignUp, ClerkLoading, ClerkLoaded, useUser } from '@clerk/nextjs';
 import Link from '@components/Link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { CardWrapper } from '@app/sign-in/[[...sign-in]]/controller';
 
 export default function Page() {
   const searchParams = useSearchParams()!;
   const redirect = searchParams.get('redirect');
   const id = searchParams.get('id');
+  const router = useRouter();
+
+  let { isSignedIn, user, isLoaded } = useUser();
+
+  if (isSignedIn) {
+    router.push(`/dashboard?id=${id}`);
+  }
 
   return (
     <Wrapper>
       <ClerkLoading>
-        <SectionWrapper class="items-center">
+        <SectionWrapper class="items-center h-[400px] w-[400px]">
           <Spinner />
-          <div className="h-[400px] w-[400px]" />
         </SectionWrapper>
       </ClerkLoading>
 
       <ClerkLoaded>
         <SectionWrapper class="items-center">
           <CardWrapper>
-            <SignUp forceRedirectUrl={redirect || `/api/v1/auth?id=${id}`} />
+            <SignUp fallbackRedirectUrl={redirect || `/api/v1/auth?id=${id}`} />
           </CardWrapper>
           <SectionWrapper class="flex-row text-nowrap items-center">
             <PageHeadings

@@ -207,3 +207,28 @@ export function amountToCurrency(amount?: number) {
 
   return (amount / 100).toFixed(2);
 }
+
+export function storeInSessionStorage(key: string, value?: any) {
+  try {
+    if (typeof window === 'undefined') {
+      throw new Error('Session storage not available');
+    }
+    sessionStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    // console.error('Error storing in session storage:', error);
+  }
+}
+
+export function getFromSessionStorage(key: string) {
+  try {
+    if (typeof window === 'undefined') {
+      throw new Error('Session storage not available');
+    }
+    const session = sessionStorage.getItem(key);
+
+    return session ? JSON.parse(session) : null;
+  } catch (error) {
+    // console.error('Error getting from session storage:', error);
+    return null;
+  }
+}

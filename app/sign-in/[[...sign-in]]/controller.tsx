@@ -6,13 +6,16 @@ import { Spinner } from '@app/components/Skeleton';
 import { SignIn, useUser } from '@clerk/nextjs';
 import Link from '@components/Link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { storeInSessionStorage } from '@helpers/index';
 
 export default function Page() {
   const searchParams = useSearchParams()!;
   const redirect = searchParams.get('redirect');
   const id = searchParams.get('id');
   const router = useRouter();
+
   let { isSignedIn, user, isLoaded } = useUser();
+  storeInSessionStorage(process.env.NEXT_PUBLIC_APP_URL!, { id });
 
   if (!isLoaded) {
     return (
@@ -24,11 +27,18 @@ export default function Page() {
     );
   }
 
+  if (isSignedIn) {
+    router.push(`/dashboard?id=${id}`);
+  }
+
   return (
     <Wrapper class="pt-5">
       <SectionWrapper class="items-center">
         <CardWrapper>
-          <SignIn forceRedirectUrl={redirect || `/api/v1/auth?id=${id}`} />
+          <SignIn
+            fallbackRedirectUrl={redirect || `/api/v1/auth?id=${id}`}
+            path="/sign-in"
+          />
         </CardWrapper>
         <SectionWrapper class="flex-row gap-5 w-[400px] text-nowrap items-center">
           <PageHeadings description="Don't have an account?" class="w-fit" />
