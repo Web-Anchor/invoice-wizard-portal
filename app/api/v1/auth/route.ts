@@ -12,13 +12,6 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
 
-  return new Response(null, {
-    status: 302,
-    // post data to create user
-    headers: {
-      Location: APP_URL + `/api/v1/create-user?id=${id}`,
-    },
-  });
   try {
     const { userId } = auth();
     const dbUser = await db

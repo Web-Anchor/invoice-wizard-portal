@@ -17,17 +17,17 @@ export async function GET(request: NextRequest) {
     const user = await currentUser();
     console.log('👤 Creating User record. Clerk data: ', user?.id, id);
 
-    // await db
-    //   .insert(users)
-    //   .values({
-    //     id: uuidv4(),
-    //     clerkId: userId!,
-    //     emailAddress: user?.emailAddresses?.[0]?.emailAddress!,
-    //     firstName: user?.firstName,
-    //     lastName: user?.lastName,
-    //     type: 'platform',
-    //   })
-    //   .returning({ id: users.id });
+    await db
+      .insert(users)
+      .values({
+        id: uuidv4(),
+        clerkId: userId!,
+        emailAddress: user?.emailAddresses?.[0]?.emailAddress!,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        type: 'platform',
+      })
+      .returning({ id: users.id });
     console.log('👤 User record created successfully 🙌');
 
     return new Response(null, {

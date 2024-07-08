@@ -19,10 +19,10 @@ export default function Link(props: Props) {
   const chargeid = searchParams.get('chargeid') || props.chargeid;
 
   const query: { id?: string; chargeid?: string } = {};
-  if (id) {
+  if (id && isString(id)) {
     query.id = id;
   }
-  if (chargeid) {
+  if (chargeid && isString(chargeid)) {
     query.chargeid = chargeid;
   }
 
@@ -37,4 +37,8 @@ export default function Link(props: Props) {
       {props.children}
     </NextLink>
   );
+}
+
+function isString(value: any): value is string {
+  return typeof value === 'string' && value !== 'null';
 }
