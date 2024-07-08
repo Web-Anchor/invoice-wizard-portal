@@ -6,50 +6,59 @@ import { usePathname } from 'next/navigation';
 
 const faqs = [
   {
-    question: 'How can I connect my Stripe account to the app?',
+    question: 'Is the customer portal free to use?',
     answer:
-      'Connecting your Stripe account is simple! Just go to the settings menu, select the payment integration option, and follow the prompts to link your account via API.',
+      'Yes, the customer portal is free to use. You can access your account and manage your financial activities without any additional charges. Simply follow the link provided by your vendor to access your invoices or add it via the portals dashboard page.',
   },
   {
-    question: 'Can I customize the invoice templates?',
+    question: 'How do I access my invoices?',
     answer:
-      'Absolutely! Our app offers customizable templates to help you personalize your invoices and showcase your brand identity.',
+      'To access your invoices, you can log in to your account via the customer portal. Once you are logged in, you can view your transactions, download invoices, and make any necessary adjustments. If you have any questions or need assistance, please contact your vendor for more information.',
   },
   {
-    question: 'How do I access and download my invoices for self-printing?',
+    question: 'Where do I get my API key?',
     answer:
-      'You can easily access and download your invoices by logging into your account and navigating to the invoices section. From there, you can view and download any invoice you need.',
+      'Your API key is provided by your vendor. If you do not have one, please contact your vendor to request an API key. Once you have your API key, you can use it to access your account and manage your financial activities via the customer portal.',
   },
   {
-    question: 'Are payments processed securely through the app?',
+    question: 'Can I edit my invoice billing details?',
     answer:
-      'Yes, we ensure secure payment processing by integrating with Stripe`s reliable payment system, providing a safe and trustworthy transaction environment.',
+      'Yes, you can edit your invoice billing details directly within the portal. This includes updating your address, contact information, and any other relevant billing details.',
   },
   {
-    question: 'Can I set up automated reminders for overdue payments?',
+    question: 'How secure is my financial information on the portal?',
     answer:
-      'Yes, our app allows you to configure automated reminders for outstanding invoices, helping you stay on top of payments and improve your cash flow.',
+      'We take the security of your financial information very seriously. Our platform uses the authentication and security protocols to ensure that your data is safe and secure.',
   },
   {
-    question: 'What kind of reporting features are available in the app?',
+    question: 'What if I have multiple vendors using the platform?',
     answer:
-      'Our app offers detailed reporting features that provide insights into your invoicing activities, allowing you to track payments, pending invoices, and overall financial performance effortlessly.',
+      'You can easily manage invoices from multiple vendors within the same portal. Each vendor will provide you with a unique API key or link to access their specific invoices.',
   },
   {
-    question:
-      'Do higher-tier plans include all the features of lower-tier plans?',
+    question: 'How do I download my invoices?',
     answer:
-      'Yes, each subsequent plan includes all the features of the previous plans, ensuring that you have access to a cumulative set of benefits as you upgrade your subscription.',
+      'You can download your invoices directly from the portal. Simply navigate to the invoice section and select the invoices you wish to download. You can then choose to download them as a PDF file for your records. If you have any questions or need assistance, please contact your vendor for more information.',
   },
   {
-    question: 'Is customer support available for all plans?',
+    question: 'Can I track my transactions on the portal?',
     answer:
-      'Yes, customer support is available for all our users. Enterprise plan subscribers, however, receive priority customer support for any queries or assistance they may need.',
+      'Yes, the portal allows you to track all your transactions in real-time. You can view the status of your invoices and payments at any time. This makes it easy to stay up-to-date on your financial activities and manage your records effectively.',
   },
   {
-    question: 'How can I upgrade or downgrade my subscription plan?',
+    question: 'How do I get support if I encounter an issue?',
     answer:
-      'You can easily manage your subscription plan from your account settings. Simply select the plan you wish to switch to, and our system will guide you through the process seamlessly.',
+      'Our support team is available to assist you with any issues you may encounter. You can reach out to us via the contact information provided within the portal. We are here to help you with any questions or concerns you may have.',
+  },
+  {
+    question: 'Can I customize my invoices?',
+    answer:
+      "While you can edit billing details, customization options for the invoice layout itself may be limited based on the vendor's settings. Please check with your vendor for specific customization options.",
+  },
+  {
+    question: 'Do I need to download any software to use the portal?',
+    answer:
+      'No, there is no need to download any software. The portal is web-based and can be accessed from any device with an internet connection. Simply follow the link provided by your vendor to get started.',
   },
   // More questions...
 ];
