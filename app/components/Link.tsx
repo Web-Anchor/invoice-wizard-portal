@@ -1,6 +1,6 @@
 'use client';
 
-import { getFromSessionStorage } from '@helpers/index';
+import { getFromSessionStorage, isString } from '@helpers/index';
 import { default as NextLink, LinkProps } from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -41,8 +41,4 @@ export default function Link(props: Props) {
       {props.children}
     </NextLink>
   );
-}
-
-function isString(value: any): value is string {
-  return typeof value === 'string' && value !== 'null';
 }

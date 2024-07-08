@@ -232,3 +232,7 @@ export function getFromSessionStorage(key: string) {
     return null;
   }
 }
+
+export function isString(value: any): value is string {
+  return typeof value === 'string' && value !== 'null';
+}
