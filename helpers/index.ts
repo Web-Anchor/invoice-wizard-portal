@@ -208,7 +208,15 @@ export function amountToCurrency(amount?: number) {
   return (amount / 100).toFixed(2);
 }
 
-export function storeInSessionStorage(key: string, value?: any) {
+type StorageTypes = {
+  id: string;
+  value: any;
+};
+
+export function storeInSessionStorage(
+  key: string,
+  value: { id: string | null }
+) {
   try {
     if (typeof window === 'undefined') {
       throw new Error('Session storage not available');
@@ -219,7 +227,7 @@ export function storeInSessionStorage(key: string, value?: any) {
   }
 }
 
-export function getFromSessionStorage(key: string) {
+export function getFromSessionStorage(key: string): StorageTypes | null {
   try {
     if (typeof window === 'undefined') {
       throw new Error('Session storage not available');
@@ -234,5 +242,5 @@ export function getFromSessionStorage(key: string) {
 }
 
 export function isString(value: any): value is string {
-  return typeof value === 'string' && value !== 'null';
+  return typeof value === 'string' && value !== 'null' && value !== 'undefined';
 }

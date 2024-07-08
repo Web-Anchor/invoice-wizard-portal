@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Wrapper from '@app/components/Wrapper';
 import PageHeadings from '@app/components/PageHeadings';
 import { useCharges } from '@hooks/useCharges';
 import {
   downloadFile,
+  getFromSessionStorage,
   getTimeAgo,
+  isString,
   stripeAmountToCurrency,
 } from '@helpers/index';
 import Button from '@app/components/Button';
@@ -34,6 +36,18 @@ export default function Page() {
   const id = searchParams.get('id')!;
   const starting_after = searchParams.get('starting_after')!;
   const ending_before = searchParams.get('ending_before')!;
+
+  useEffect(() => {
+    // --------------------------------------------------------------------------------
+    // 📌  Session storage sync
+    // --------------------------------------------------------------------------------
+    const storage = getFromSessionStorage(process.env.NEXT_PUBLIC_APP_URL!);
+
+    if (!isString(id)) {
+      router.push(`/dashboard?id=${storage?.id}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { charges, data, isLoading, isValidKey } = useCharges({
     id,
