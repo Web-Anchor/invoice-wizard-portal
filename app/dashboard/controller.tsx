@@ -43,7 +43,7 @@ export default function Page() {
     // --------------------------------------------------------------------------------
     const storage = getFromSessionStorage(process.env.NEXT_PUBLIC_APP_URL!);
 
-    if (!isString(id)) {
+    if (!isString(id) && storage) {
       router.push(`/dashboard?id=${storage?.id}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
