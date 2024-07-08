@@ -7,27 +7,27 @@ import { v4 as uuidv4 } from 'uuid';
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL!;
 
 export async function GET(request: NextRequest) {
+  auth().protect();
+
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
+
   try {
-    auth().protect();
-
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
-
     const { userId } = auth();
     const user = await currentUser();
-    console.log('👤 Creating User record. Clerk data: ', user?.id);
+    console.log('👤 Creating User record. Clerk data: ', user?.id, id);
 
-    await db
-      .insert(users)
-      .values({
-        id: uuidv4(),
-        clerkId: userId!,
-        emailAddress: user?.emailAddresses?.[0]?.emailAddress!,
-        firstName: user?.firstName,
-        lastName: user?.lastName,
-        type: 'platform',
-      })
-      .returning({ id: users.id });
+    // await db
+    //   .insert(users)
+    //   .values({
+    //     id: uuidv4(),
+    //     clerkId: userId!,
+    //     emailAddress: user?.emailAddresses?.[0]?.emailAddress!,
+    //     firstName: user?.firstName,
+    //     lastName: user?.lastName,
+    //     type: 'platform',
+    //   })
+    //   .returning({ id: users.id });
     console.log('👤 User record created successfully 🙌');
 
     return new Response(null, {
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: APP_URL + '/sign-in',
+        Location: APP_URL + `/sign-in?id=${id}`,
       },
     });
   }

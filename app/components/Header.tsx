@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { classNames } from '@helpers/index';
 import Link from '@components/Link';
 import { useClerk, useUser } from '@clerk/nextjs';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import UserProfileCard from '@components/UserProfileCard';
 import Logo from '@components/Logo';
 import {
@@ -24,7 +24,8 @@ type Props = {
 
 export default function Header(props: Props) {
   const path = usePathname();
-  const router = useRouter();
+  const searchParams = useSearchParams()!;
+  const id = searchParams.get('id');
 
   const { signOut } = useClerk();
   let { isSignedIn, user, isLoaded } = useUser();
@@ -43,8 +44,9 @@ export default function Header(props: Props) {
     // --------------------------------------------------------------------------------
     // 📌 Sign Out User from current session
     // --------------------------------------------------------------------------------
+    const url = id ? `/?id=${id}` : '/';
 
-    signOut({ redirectUrl: '/' });
+    signOut({ redirectUrl: url });
   }
 
   const isHomePath = path === '/';

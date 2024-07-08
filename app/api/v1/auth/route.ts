@@ -7,12 +7,19 @@ import { eq } from 'drizzle-orm';
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL!;
 
 export async function GET(request: NextRequest) {
+  auth().protect();
+
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
+
+  return new Response(null, {
+    status: 302,
+    // post data to create user
+    headers: {
+      Location: APP_URL + `/api/v1/create-user?id=${id}`,
+    },
+  });
   try {
-    auth().protect();
-
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
-
     const { userId } = auth();
     const dbUser = await db
       .select()
@@ -44,7 +51,7 @@ export async function GET(request: NextRequest) {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: APP_URL + '/sign-in',
+        Location: APP_URL + `/sign-in?id=${id}`,
       },
     });
   }

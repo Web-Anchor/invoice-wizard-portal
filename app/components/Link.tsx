@@ -16,13 +16,22 @@ type Props = {
 export default function Link(props: Props) {
   const searchParams = useSearchParams()!;
   const id = searchParams.get('id');
+  const chargeid = searchParams.get('chargeid') || props.chargeid;
+
+  const query: { id?: string; chargeid?: string } = {};
+  if (id) {
+    query.id = id;
+  }
+  if (chargeid) {
+    query.chargeid = chargeid;
+  }
 
   return (
     <NextLink
       {...props}
       href={{
         pathname: props.href || '#',
-        query: { id, chargeid: props.chargeid },
+        query,
       }}
     >
       {props.children}

@@ -2,7 +2,7 @@
 
 import { classNames } from '@helpers/index';
 import { useClerk } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import Link from '@components/Link';
 import Logo from '@components/Logo';
@@ -15,15 +15,17 @@ type Props = {
 
 export default function UserNotification(props: Props) {
   const { signOut } = useClerk();
-  const router = useRouter();
+  const searchParams = useSearchParams()!;
+  const id = searchParams.get('id');
 
   async function signOutUser(e: { preventDefault: () => void }) {
     e.preventDefault();
     // --------------------------------------------------------------------------------
     // 📌 Sign Out User from current session
     // --------------------------------------------------------------------------------
+    const url = id ? `/?id=${id}` : '/';
 
-    signOut({ redirectUrl: '/' });
+    signOut({ redirectUrl: url });
   }
 
   return (
