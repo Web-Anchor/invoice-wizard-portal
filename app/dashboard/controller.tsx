@@ -190,7 +190,9 @@ export default function Page() {
         slogan="Invoice Smarter, Grow Stronger - Empowering Your Business!"
       />
 
-      <KeyCard apiKey={id} isValid={isValidKey} isLoading={isLoading} />
+      {!isValidKey && (
+        <KeyCard apiKey={id} isValid={isValidKey} isLoading={isLoading} />
+      )}
 
       <Table
         header={[

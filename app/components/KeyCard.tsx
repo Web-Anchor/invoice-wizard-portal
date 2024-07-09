@@ -1,29 +1,41 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Badge from './Badge';
+import { TableSkeleton } from './Skeleton';
 
 type Props = {
   apiKey?: string;
   isValid?: boolean;
   isLoading?: boolean;
+  link?: string;
+  path?: string;
 };
 
 export default function KeyCard(props: Props): React.ReactElement | null {
   const [state, setState] = useState<{ key?: string }>({
     key: props.apiKey,
   });
-
-  if (props.isValid || props.isLoading) {
-    return null;
-  }
   console.log('🚧 KeyCard', props);
+
+  if (props.isLoading) {
+    return <TableSkeleton />;
+  }
 
   return (
     <div className="flex flex-col gap-2 relative min-w-full sm:min-w-64 overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:px-6">
       <section className="w-fit">
         <Badge
-          title={props?.apiKey ? 'API Key not valid' : 'Add Your API Key'}
-          type={props?.apiKey ? 'warning' : 'error'}
+          title={
+            (!props.apiKey && 'Please add your API Key') ||
+            (props.apiKey && !props.isValid && 'API Key not valid') ||
+            (props.isValid && 'API Key is valid') ||
+            'Please add your API Key to access your invoices!'
+          }
+          type={
+            (!props?.apiKey && 'error') ||
+            (props?.apiKey && !props.isValid && 'warning') ||
+            'success'
+          }
           tooltip="API Key is required to access your invoices!"
           tooltipPosition="tooltip-right"
         />
@@ -58,10 +70,10 @@ export default function KeyCard(props: Props): React.ReactElement | null {
         </div>
 
         <Link
-          href={`/dashboard?id=${state.key}`}
+          href={props.link ?? `${props.path || '/dashboard'}?id=${state.key}`}
           className="font-medium text-indigo-600 hover:text-indigo-500 mt-auto"
         >
-          Add Key
+          {props.isValid ? 'Update API key' : 'Add Key'}
         </Link>
       </section>
     </div>

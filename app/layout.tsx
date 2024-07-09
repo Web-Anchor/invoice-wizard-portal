@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       'Invoicing platform for freelancers and small businesses. Manage your financial activities from one central location.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://portal.invoicio.io/',
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/`,
     images: [
       {
         pathname: '/assets/og-image.png',

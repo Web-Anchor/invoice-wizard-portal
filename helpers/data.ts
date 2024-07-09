@@ -29,6 +29,12 @@ export function menuNav(props: {
       initial: 'A',
       current: props.path === '/dashboard/about',
     },
+    {
+      name: 'Settings',
+      href: '/dashboard/settings',
+      initial: 'S',
+      current: props.path === '/dashboard/settings',
+    },
   ];
 
   // --------------------------------------------------------------------------------
@@ -165,7 +171,11 @@ export function showMenuNavRoutes(props: {
   advanced?: boolean;
   pro?: boolean;
 }) {
-  const BASE = ['/dashboard/feedback', '/dashboard/about'];
+  const BASE = [
+    '/dashboard/feedback',
+    '/dashboard/about',
+    '/dashboard/settings',
+  ];
 
   return BASE;
 }
