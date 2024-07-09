@@ -71,28 +71,48 @@ export function OG() {
   );
 }
 
-{
-  /* <div tw="flex flex-col w-full h-full items-center justify-center bg-white bg-opacity-80">
-  <div tw="flex flex-col w-full py-12 px-4 items-center justify-between p-8">
-    <h2 tw="flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 text-center">
-      <span>Your Gateway to Effortless Financial Management</span>
-    </h2>
-    <h2 tw="flex flex-col text-xl sm:text-2xl font-bold tracking-tight text-gray-900 text-center text-indigo-600">
-      <span>Your Gateway to Effortless Financial Management</span>
-    </h2>
-    <p tw="text-xs leading-5 text-gray-600 text-center">
-      Discover the ease of managing your financial activities from one central
-      location. Our platform offers you a dedicated space where you can
-      effortlessly view transactions from your vendor, download invoices, and
-      make necessary adjustments. With these powerful features, you can keep
-      track of all your financial dealings and ensure that your records are
-      always up-to-date and accurate. Contact your vendor today to access your
-      personalized invoicing portal and start experiencing the convenience of
-      streamlined financial management.
-    </p>
-    <h1 tw="text-2xl font-bold text-gray-800">
-      invoic<span tw="text-indigo-600">io</span>
-    </h1>
-  </div>
-</div> */
-}
+// https://og-playground.vercel.app/?share=tVRRb9MwEP4rJz-B1DRbGWhUZS8weJp4mYSQ-nK1L41Xx47sS9Mw7b9zTlgpYxIIiUpNfPH57rvvvvO90sGQWqqyhJtgbGXJwAaTPIOHmrlNy7JktK633nR2rkNTyr8NnjynssG4I7Z-WybSbINPpWYsHo21X_uVsXvg_t1aVY4OkB-FDg76ouqcg3p6WaYmFVqCUoS7LrGthkdzsy36WhzyIrSoLQ_F-dnZWl2tPcjvDxla8V5Aeyguns-yIe6JPLTF5TGkBK0Xz8VkOnDx6uAgNctxfSHrKnguNsEZ4Ih6J3QUbLc1T97biEPx9uxssqbkJ4kkVWrRX30NXYRPyNTjABzguqpCZEcpwUfr0WuLDm7Q45YaibEqx1NHuGW9-CvsJ9AX_wR9Wosa7DYUb07a8F9KEbOdapnQJ3CEJsN8fQJRYDzL7gebdNhnzDUBiawhVNDkxBIBhgyzOgJC0ezesqUEVQyNDABBjhdlzwWNWdFz-CxnWocsFYlLVVFMORAgGDJWvGR0pBxN0NcUadzT6IGOHLgB9pb6TLhPOakMypRxBLQnb0KcgQm9dwENWL8PVlOaAXoj6HcEnsROGAdAk2WcWUxz-GK5zqVKnW3oKYr8oSLkLubTj0h2REJp7nZmA2VCnhBhCJ3wk8Z85JMcl6jIk18kHaKRTfmKTjqcoGsLDoWR2scjqHUXxZjDe1GXVHhamOjBTKoQt6yIca8VGoOXtN-Evqng3KFWKMudkaCJMTLQQTwtCU7ZzU3VwUvc_GXsbeJI2Ah6CfOzoLHjo9TmkIWxKttJIKv6_ERcT-bhqK7LJyKf8I1SPzn9y0TY8Luoz0djVcptJavprWYqtKMC1PJe9dZwrZaSb6ZqymOolhfZMLTptmpZoUs0U9SEO3s7tPnelqsrWxInI79uNmTUkmNHDzPFuBGP2x-XN7yYyMs0oHupHr4D
+//  <div tw="flex flex-col w-full h-full items-center justify-center bg-white bg-opacity-80">
+//   <div tw="flex flex-col w-full py-12 px-4 items-center justify-between p-8">
+//     <h2 tw="flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 text-center">
+//       <span>Your Gateway to Effortless Financial Management</span>
+//     </h2>
+//     <h2 tw="flex flex-col text-xl sm:text-2xl font-bold tracking-tight text-gray-900 text-center text-indigo-600">
+//       <span>Your Gateway to Effortless Financial Management</span>
+//     </h2>
+//     <p tw="text-xs leading-5 text-gray-600 text-center">
+//       Discover the ease of managing your financial activities from one central
+//       location. Our platform offers you a dedicated space where you can
+//       effortlessly view transactions from your vendor, download invoices, and
+//       make necessary adjustments. With these powerful features, you can keep
+//       track of all your financial dealings and ensure that your records are
+//       always up-to-date and accurate. Contact your vendor today to access your
+//       personalized invoicing portal and start experiencing the convenience of
+//       streamlined financial management.
+//     </p>
+//     <h1 tw="text-2xl font-bold text-gray-800">
+//       invoic<span tw="text-indigo-600">io</span>
+//     </h1>
+//   </div>
+// </div>
+
+// based on above . compoennt for a platform
+//  <div tw="flex flex-col w-full h-full items-center justify-center bg-white bg-opacity-80">
+//   <div tw="flex flex-col w-full py-12 px-4 items-center justify-between p-8">
+//     <h2 tw="flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 text-center">
+//       <span>Streamline Your Invoicing with Stripe Integration</span>
+//     </h2>
+//     <h2 tw="flex flex-col text-xl sm:text-2xl font-bold tracking-tight text-gray-900 text-center text-indigo-600">
+//       <span>Effortless invoicing and easy access for your customers.</span>
+//     </h2>
+//     <p tw="text-xs leading-5 text-gray-600 text-center">
+//       Take your invoicing to the next level with our Stripe integration.
+//       Streamline your operations, enhance customer satisfaction, and focus on
+//       growing your business. Start today and experience the simplicity and
+//       efficiency of our invoicing solution.
+//     </p>
+//     <h1 tw="text-2xl font-bold text-gray-800">
+//       invoic<span tw="text-indigo-600">io</span>
+//     </h1>
+//   </div>
+// </div>

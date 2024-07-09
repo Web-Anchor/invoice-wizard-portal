@@ -8,17 +8,20 @@ import { Toaster } from 'sonner';
 const fonts = Nunito({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'invoicio.io',
-  description: 'Invoicing platform for freelancers and small businesses.',
+  title: 'invoicio.io - Invoicing Platform',
+  description:
+    'Invoicing platform for freelancers and small businesses. Manage your financial activities from one central location.',
   openGraph: {
     title: 'invoicio.io',
-    description: 'Invoicing platform for freelancers and small businesses.',
+    description:
+      'Invoicing platform for freelancers and small businesses. Manage your financial activities from one central location.',
     type: 'website',
     locale: 'en_US',
     url: 'https://portal.invoicio.io/',
     images: [
       {
-        url: '/assets/og-image.png',
+        pathname: '/assets/og-image.png',
+        url: `${process.env.NEXT_PUBLIC_APP_URL}/assets/og-image.png`,
         width: 800,
         height: 400,
         alt: 'invoicio.io - Invoicing Platform',
