@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     'Invoicing platform for freelancers and small businesses. Manage your financial activities from one central location.',
   openGraph: {
-    title: 'invoicio.io',
+    title: 'invoicio.io - Invoicing Platform',
     description:
       'Invoicing platform for freelancers and small businesses. Manage your financial activities from one central location.',
     type: 'website',
