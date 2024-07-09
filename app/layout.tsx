@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'invoicio.io',
-    images: ['/og-image.png'],
+    images: ['/public/assets/og-image.svg'],
   },
 };
 
