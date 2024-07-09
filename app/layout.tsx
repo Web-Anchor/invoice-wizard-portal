@@ -15,8 +15,15 @@ export const metadata: Metadata = {
     description: 'Invoicing platform for freelancers and small businesses.',
     type: 'website',
     locale: 'en_US',
-    url: 'invoicio.io',
-    images: ['/assets/og-image.svg'],
+    url: 'https://portal.invoicio.io/',
+    images: [
+      {
+        url: '/assets/og-image.png',
+        width: 800,
+        height: 400,
+        alt: 'invoicio.io - Invoicing Platform',
+      },
+    ],
   },
 };
 
