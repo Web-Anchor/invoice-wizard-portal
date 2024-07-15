@@ -108,13 +108,13 @@ export default function Page() {
     }
   }
 
-  async function downloadInvoice(id: string) {
+  async function downloadPDF(id: string) {
+    const startTime = new Date().getTime(); // 🕰 Start time
     try {
       setState((prev) => ({ ...prev, fetchInvoice: id }));
-
       const charge = charges?.find((charge) => charge.id === id);
 
-      const templateData: Template = {
+      const invoiceData: Template = {
         invoiceNumber: charge?.id,
         date: new Date(charge?.created! * 1000).toDateString(),
         billToName: charge?.customer?.name,
@@ -149,37 +149,76 @@ export default function Page() {
         tax: undefined,
         total: stripeAmountToCurrency(charge?.amount, charge?.currency!),
       };
-      const { data } = await axios.post('/api/v1/invoices/puppet-pdf-gen', {
-        data: templateData,
-        chargeid: id,
-        clientId: searchParams.get('id')!,
-      });
-      const url = data?.url;
 
-      await downloadFile({
-        url,
-        name: id,
-        classBack: (props) => {
-          console.log('🚀 Progress', props);
-        },
-      });
+      const { data, status } = await callApiWithRetry({ id, invoiceData });
 
-      // --------------------------------------------------------------------------------
-      // 📌  Delete PDF on the server
-      // --------------------------------------------------------------------------------
-      const del = await axios.post('/api/v1/delete-file', {
-        url,
-      });
-      console.log('🚮 Delete', del);
-
-      toast?.success('Document downloaded successfully!');
+      if (data && status === 200) {
+        // const pdfBlob = await new Blob([Buffer.from(data, 'base64')]);
+        const pdfBlob = new Blob([data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(pdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `template_sample_${
+          new Date().toISOString().split('T')[1]
+        }.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        toast?.success(`Document downloaded successfully!`);
+      } else {
+        toast?.error('An error occurred while generating the document.');
+      }
     } catch (error: any) {
-      console.error('🔑 error', error);
+      console.log('🚨 error', error);
+      const totalTime = new Date().getTime() - startTime; // 🕰 End time
+      const msg = 'An error occurred while downloading the document.';
 
-      toast.error(error.message);
+      toast?.error(`${msg} Executed in: ${totalTime}ms`);
     } finally {
       setState((prev) => ({ ...prev, fetchInvoice: undefined }));
     }
+  }
+
+  async function callApiWithRetry(props: {
+    id: string;
+    invoiceData: Template;
+  }) {
+    const MAX_RETRIES = 3;
+    const RETRY_INTERVAL = 2000; // delay between retries in ms
+    let retries = 0;
+
+    async function attempt(): Promise<{ data?: any; status?: any }> {
+      try {
+        const { data, status } = await axios.post(
+          '/api/v2/generate-pdf',
+          {
+            invoiceData: props.invoiceData,
+            id: searchParams.get('id')!,
+          }, // 🚧 POST request with body required
+          { responseType: 'blob' }
+        );
+
+        return { data, status };
+      } catch (error) {
+        if (retries < MAX_RETRIES) {
+          retries++;
+          console.log(`Retrying API call (${retries}/${MAX_RETRIES})...`);
+          console.log('🚨 error', (error as Error)?.message);
+
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              attempt().then(resolve).catch(reject);
+            }, RETRY_INTERVAL);
+          });
+        } else {
+          console.error('Max retries reached. Unable to call API.');
+          throw new Error('Max retries reached. Unable to call API.');
+        }
+      }
+    }
+
+    return attempt();
   }
 
   return (
@@ -256,7 +295,7 @@ export default function Page() {
               {
                 item: (
                   <Button
-                    onClick={() => downloadInvoice(item?.id!)}
+                    onClick={() => downloadPDF(item?.id!)}
                     fetching={state?.fetchInvoice === item?.id!}
                     style="link"
                   >

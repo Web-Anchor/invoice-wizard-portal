@@ -6,7 +6,7 @@ export function generateTemplate(props: {
   template: string;
 }): string {
   const template = Handlebars.compile(props.template);
-  console.log('🚧 _body', props.data);
+  console.log('Generating Template from data... ', props.data);
 
   return template(props.data);
 }
