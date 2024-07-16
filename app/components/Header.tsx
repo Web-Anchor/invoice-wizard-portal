@@ -62,7 +62,7 @@ export default function Header(props: Props) {
       <Disclosure
         as="nav"
         className={classNames(
-          'fixed inset-x-0 top-0 z-50 backdrop-blur bg-white bg-opacity-95',
+          'fixed inset-x-0 top-0 z-50 backdrop-blur bg-white mx-auto max-w-7xl bg-opacity-95',
           props.class
         )}
       >
