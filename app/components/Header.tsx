@@ -2,7 +2,7 @@
 
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { classNames } from '@helpers/index';
-import Link from 'next/link';
+import Link from '@components/Link';
 import { useClerk, useUser } from '@clerk/nextjs';
 import { usePathname, useSearchParams } from 'next/navigation';
 import UserProfileCard from '@components/UserProfileCard';
@@ -87,7 +87,8 @@ export default function Header(props: Props) {
                         )}
 
                         <Link
-                          href="#facts"
+                          href="/"
+                          hash="#facts"
                           className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                           onClick={() => ctaRef.current?.click()}
                         >
@@ -143,7 +144,8 @@ export default function Header(props: Props) {
                 {path === '/' && (
                   <>
                     <Link
-                      href="#facts"
+                      href="/"
+                      hash="#facts"
                       className={classNames(mobInactive)}
                       onClick={() => ctaRef.current?.click()}
                     >

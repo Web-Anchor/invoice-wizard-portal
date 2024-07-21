@@ -12,6 +12,7 @@ type Props = {
   title?: string;
   rel?: string;
   chargeid?: string;
+  hash?: string;
 } & LinkProps;
 
 export default function Link(props: Props) {
@@ -22,7 +23,7 @@ export default function Link(props: Props) {
     ? searchParams.get('id')
     : storage?.id;
 
-  const query: { id?: string; chargeid?: string } = {};
+  let query: { id?: string; chargeid?: string } = {};
   if (id && isString(id)) {
     query.id = id;
   }
@@ -34,8 +35,9 @@ export default function Link(props: Props) {
     <NextLink
       {...props}
       href={{
-        pathname: props.href || '#',
+        pathname: props.href || '/',
         query,
+        hash: props.hash,
       }}
     >
       {props.children}
